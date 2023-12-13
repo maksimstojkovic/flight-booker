@@ -1,25 +1,35 @@
-Search Flights
+<h1>Search Flights</h1>
 
 <%= form_with url: root_path, method: :get do %>
   <div>
     <%= label_tag :departure_airport, "Departure Airport:" %>
-    <%= select_tag :departure_airport, options_for_select(@airport_options) %>
+    <%= select_tag :departure_airport, options_for_select(@airport_options, @search_params[:departure_airport]), { include_blank: "--" } %>
   </div>
 
   <div>
     <%= label_tag :arrival_airport, "Arrival Airport:" %>
-    <%= select_tag :arrival_airport, options_for_select(@airport_options) %>
+    <%= select_tag :arrival_airport, options_for_select(@airport_options, @search_params[:arrival_airport]), { include_blank: "--" } %>
   </div>
 
   <div>
     <%= label_tag :passengers, "Passengers:" %>
-    <%= select_tag :passengers, options_for_select((1..4).map { |i| [i, i] }) %>
+    <%= select_tag :passengers, options_for_select((1..4).map { |i| [i, i] }, @search_params[:passengers]), { include_blank: "--" } %>
   </div>
 
   <div>
     <%= label_tag :date, "Departure Date:" %>
-    <%= select_tag :date, options_for_select(@date_options) %>
+    <%= select_tag :date, options_for_select(@date_options, @search_params[:date]), { include_blank: "--" } %>
   </div>
 
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search", name: "" %>
+<% end %>
+
+<% if @results %>
+  <h1>Results</h1>
+
+  <ul>
+    <% @results.each do |flight| %>
+      <li><%= render flight %></li>
+    <% end %>
+  </ul>
 <% end %>
