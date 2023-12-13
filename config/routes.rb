@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "flights#index"
   
-  resource :bookings, only: %i[ show new create ]
+  resources :flights, only: %i[ show ]
+  resources :bookings, only: %i[ show new create ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
