@@ -29,7 +29,10 @@
 
   <ul>
     <% @results.each do |flight| %>
-      <li><%= render flight %></li>
+      <li>
+        <%= link_to "#{flight.departure_airport.code} - #{flight.arrival_airport.code}", flight_path(flight) %>
+        | Date: <%= flight.date.strftime("%H:%M %d/%m/%Y") %> | Duration: <%= flight.duration %>
+      </li>
     <% end %>
   </ul>
 <% end %>

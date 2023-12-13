@@ -1,1 +1,7 @@
-<%= flight.departure_airport.code %> - <%= flight.arrival_airport.code %> | Date: <%= flight.date.strftime("%H:%M %d/%m/%Y") %> | Duration: <%= flight.duration %>
+<p><strong>Departure Airport:</strong> <%= flight.departure_airport.code %> - <%= flight.departure_airport.name %></p>
+
+<p><strong>Arrival Airport:</strong> <%= flight.arrival_airport.code %> - <%= flight.arrival_airport.name %></p>
+
+<p><strong>Date:</strong> <%= flight.date.strftime("%H:%M %d/%m/%Y") %></p>
+
+<p><strong>Duration:</strong> <%= pluralize(flight.duration, "minute") %></p>
