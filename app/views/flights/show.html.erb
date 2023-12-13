@@ -1,0 +1,15 @@
+<h1>Flight: <%= "#{@flight.departure_airport.code} - #{@flight.arrival_airport.code}" %></h1>
+
+<%= render @flight %>
+
+<h2>Bookings</h2>
+
+<% if @flight.bookings.any? %>
+  <ul>
+    <%= @flight.bookings.each do |booking| %>
+      <li><%= booking.passenger.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No bookings found.</p>
+<% end %>
