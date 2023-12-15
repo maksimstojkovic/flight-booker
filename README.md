@@ -1,24 +1,12 @@
-# README
+# Flight Booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Rails application which allows users to search for and book flights.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The following are used as part of this project:
+* Advanced form building
+* Nested attributes
+* Partials
+* Routing subsets
+* GET route parameters
+* POST route parameters
+* Parameter validation
