@@ -20,8 +20,18 @@
 
         <div class="field">
           <%= f_nest.label :email, "Email:" %>
-          <%= f_nest.text_field :email %>
+        <%= f_nest.email_field :email %>
+      </div>
+
+      <% if f_nest.object.errors.any? %>
+        <div class="error-explanation">
+          <ul>
+          <% f_nest.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
         </div>
+      <% end %>
     <% end %>
 
     <%= f.submit "Create #{"Booking".pluralize(@passengers)}", name: "" %>
