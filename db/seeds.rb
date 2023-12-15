@@ -21,3 +21,4 @@ f2 = Flight.find_or_create_by!(departure_airport: a2, arrival_airport: a3, date:
 f3 = Flight.find_or_create_by!(departure_airport: a3, arrival_airport: a4, date: DateTime.new(2024,1,3,6), duration: 60)
 f4 = Flight.find_or_create_by!(departure_airport: a4, arrival_airport: a5, date: DateTime.new(2024,1,4,6), duration: 60)
 f5 = Flight.find_or_create_by!(departure_airport: a5, arrival_airport: a1, date: DateTime.new(2024,1,5,6), duration: 60)
+f6 = Flight.find_or_create_by!(departure_airport: a1, arrival_airport: a3, date: DateTime.new(2024,1,7,6), duration: 60)
