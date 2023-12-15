@@ -13,13 +13,13 @@
     <%= f.fields_for :passengers, @passengers do |f_nest| %>
       <h3>Passenger <%= f_nest.index + 1 %></h3>
 
-        <div class="field">
-          <%= f_nest.label :name, "Name:" %>
-          <%= f_nest.text_field :name %>
-        </div>
+      <div class="field">
+        <%= f_nest.label :name, "Name:" %>
+        <%= f_nest.text_field :name %>
+      </div>
 
-        <div class="field">
-          <%= f_nest.label :email, "Email:" %>
+      <div class="field">
+        <%= f_nest.label :email, "Email:" %>
         <%= f_nest.email_field :email %>
       </div>
 
