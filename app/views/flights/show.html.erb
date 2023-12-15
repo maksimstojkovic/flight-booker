@@ -6,7 +6,7 @@
 
 <% if @flight.bookings.any? %>
   <ul>
-    <%= @flight.bookings.each do |booking| %>
+    <% @flight.bookings.each do |booking| %>
       <li><%= booking.passenger.name %></li>
     <% end %>
   </ul>
