@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
+  before_action :validate_booking_params, only: :new
+
   def new
-    validate_booking_params
-    
     @flight = Flight.find(booking_params[:flight])
     @passengers = booking_params[:passengers]
   end
@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
   private
 
   def validate_booking_params
-    if %i[ flight passengers ].map { |s| !params.has_key?(s) || params[s].empty? }.any? ||
+    if !booking_params.values.all? { |v| v.present? } ||
        !Flight.exists?(id: booking_params[:flight]) || !booking_params[:passengers].positive?
 
       if request.referer.nil?
@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    p = params.permit(:flight, :passengers).to_h
+    p = params.require(:booking).permit(:flight, :passengers).to_h
     p.update(p) { |k,v| v.to_i }
   end
 end
