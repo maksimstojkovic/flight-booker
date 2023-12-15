@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
     validate_booking_params
     
     @flight = Flight.find(booking_params[:flight])
+    @passengers = booking_params[:passengers]
   end
 
   def create
@@ -12,7 +13,7 @@ class BookingsController < ApplicationController
 
   def validate_booking_params
     if %i[ flight passengers ].map { |s| !params.has_key?(s) || params[s].empty? }.any? ||
-       !Flight.exists?(id: booking_params[:flight].to_i)
+       !Flight.exists?(id: booking_params[:flight]) || !booking_params[:passengers].positive?
 
       if request.referer.nil?
         redirect_to root_url
@@ -23,6 +24,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.permit(:flight, :passengers)
+    p = params.permit(:flight, :passengers).to_h
+    p.update(p) { |k,v| v.to_i }
   end
 end
