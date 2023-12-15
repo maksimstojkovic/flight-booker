@@ -27,7 +27,7 @@
 <% if @results %>
   <h1>Results</h1>
 
-  <ul>
+  <ul class="results">
     <% @results.each do |flight| %>
       <li>
         <%= radio_button_tag "flight", flight.id %>
