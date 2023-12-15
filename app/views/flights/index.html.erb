@@ -27,13 +27,20 @@
 <% if @results %>
   <h1>Results</h1>
 
-  <ul class="results">
-    <% @results.each do |flight| %>
-      <li>
-        <%= radio_button_tag "flight", flight.id %>
-        <%= link_to "#{flight.departure_airport.code} - #{flight.arrival_airport.code}", flight_path(flight) %>
-        <%=h " | " %>Date: <%= flight.date.strftime("%H:%M %d/%m/%Y") %> | Duration: <%= flight.duration %>
-      </li>
-    <% end %>
-  </ul>
+
+  <%= form_with url: new_booking_path, method: :get, class: "flight-booking" do %>
+    <%= hidden_field_tag :passengers, @search_params[:passengers] %>
+
+    <ul class="results">
+      <% @results.each do |flight| %>
+        <li>
+          <%= radio_button_tag "flight", flight.id %>
+          <%= link_to "#{flight.departure_airport.code} - #{flight.arrival_airport.code}", flight_path(flight) %>
+          <%=h " | " %>Date: <%= flight.date.strftime("%H:%M %d/%m/%Y") %> | Duration: <%= flight.duration %>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= submit_tag "Create Booking", name: "" %>
+  <% end %>
 <% end %>
