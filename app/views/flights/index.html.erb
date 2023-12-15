@@ -32,9 +32,14 @@
     <%= hidden_field_tag :passengers, @search_params[:passengers] %>
 
     <ul class="results">
-      <% @results.each do |flight| %>
+      <% @results.each_with_index do |flight, i| %>
         <li>
-          <%= radio_button_tag "flight", flight.id %>
+          <% if i == 0 %>
+            <%= radio_button_tag "flight", flight.id, true %>
+          <% else %>
+            <%= radio_button_tag "flight", flight.id %>
+          <% end %>
+          
           <%= link_to "#{flight.departure_airport.code} - #{flight.arrival_airport.code}", flight_path(flight) %>
           <%=h " | " %>Date: <%= flight.date.strftime("%H:%M %d/%m/%Y") %> | Duration: <%= flight.duration %>
         </li>
