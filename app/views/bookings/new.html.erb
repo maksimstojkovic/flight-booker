@@ -6,7 +6,7 @@
 
 <h2>Passenger Details</h2>
 
-<%= form_with model: @flight, scope: :booking, url: bookings_path do |f| %>
+<%= form_with model: @flight, scope: :create_booking, url: bookings_path do |f| %>
   <div class="field-group">
     <%= f.fields_for :passengers do |f_nest| %>
       <h3>Passenger <%= f_nest.options[:child_index] + 1 %></h3>
