@@ -7,6 +7,18 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @flight = Flight.find(create_params[:flight])
+    @passengers = create_params[:passengers_attributes].values.map { |p| @flight.passengers.new(p) }
+
+    if @passengers.map { |p| p.valid? }.all?
+      @passengers.each do |p|
+        p.save
+        @flight.bookings.create(passenger: p)
+      end
+      redirect_to flight_path(@flight)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
@@ -26,5 +38,9 @@ class BookingsController < ApplicationController
   def booking_params
     p = params.require(:booking).permit(:flight, :passengers).to_h
     p.update(p) { |k,v| v.to_i }
+  end
+  
+  def create_params
+    params.require(:create_booking).permit(:flight, passengers_attributes: [:name, :email])
   end
 end
