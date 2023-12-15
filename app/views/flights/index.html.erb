@@ -12,13 +12,13 @@
   </div>
 
   <div>
-    <%= label_tag :passengers, "Passengers:" %>
-    <%= select_tag :passengers, options_for_select((1..4).map { |i| [i, i] }, @search_params[:passengers]), { include_blank: "--" } %>
+    <%= label_tag :date, "Departure Date:" %>
+    <%= select_tag :date, options_for_select(@date_options, @search_params[:date]), { include_blank: "--" } %>
   </div>
 
   <div>
-    <%= label_tag :date, "Departure Date:" %>
-    <%= select_tag :date, options_for_select(@date_options, @search_params[:date]), { include_blank: "--" } %>
+    <%= label_tag :passengers, "Passengers*:" %>
+    <%= select_tag :passengers, options_for_select((1..4).map { |i| [i, i] }, @search_params[:passengers]), { include_blank: "--", required: true } %>
   </div>
 
   <%= submit_tag "Search", name: "" %>
