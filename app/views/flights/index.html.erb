@@ -1,27 +1,29 @@
 <h1>Search Flights</h1>
 
 <%= form_with scope: :search, url: root_path, method: :get do |f| %>
-  <div>
-    <%= f.label :departure_airport, "Departure Airport:" %>
-    <%= f.select :departure_airport, options_for_select(@airport_options, @search_params[:departure_airport]), { include_blank: "--" } %>
-  </div>
+  <div class="field-group">
+    <div class="field">
+      <%= f.label :departure_airport, "Departure Airport:" %>
+      <%= f.select :departure_airport, options_for_select(@airport_options, @search_params[:departure_airport]), { include_blank: "--" } %>
+    </div>
 
-  <div>
-    <%= f.label :arrival_airport, "Arrival Airport:" %>
-    <%= f.select :arrival_airport, options_for_select(@airport_options, @search_params[:arrival_airport]), { include_blank: "--" } %>
-  </div>
+    <div class="field">
+      <%= f.label :arrival_airport, "Arrival Airport:" %>
+      <%= f.select :arrival_airport, options_for_select(@airport_options, @search_params[:arrival_airport]), { include_blank: "--" } %>
+    </div>
 
-  <div>
-    <%= f.label :date, "Departure Date:" %>
-    <%= f.select :date, options_for_select(@date_options, @search_params[:date]), { include_blank: "--" } %>
-  </div>
+    <div class="field">
+      <%= f.label :date, "Departure Date:" %>
+      <%= f.select :date, options_for_select(@date_options, @search_params[:date]), { include_blank: "--" } %>
+    </div>
 
-  <div>
-    <%= f.label :passengers, "Passengers*:" %>
-    <%= f.select :passengers, options_for_select((1..4).map { |i| [i, i] }, @search_params[:passengers] || 1), { include_blank: false } %>
-  </div>
+    <div class="field">
+      <%= f.label :passengers, "Passengers*:" %>
+      <%= f.select :passengers, options_for_select((1..4).map { |i| [i, i] }, @search_params[:passengers] || 1), { include_blank: false } %>
+    </div>
 
-  <%= f.submit "Search", name: "" %>
+    <%= f.submit "Search", name: "" %>
+  </div>
 <% end %>
 
 <% if @results %>
@@ -30,16 +32,16 @@
   <%= form_with scope: :booking, url: new_booking_path, method: :get, class: "flight-booking" do |f| %>
     <%= f.hidden_field :passengers, value: @search_params[:passengers] %>
 
-    <ul class="results">
+    <div class="field-group">
       <% @results.each_with_index do |flight, i| %>
-        <li>
+        <div class="field">
           <%= f.radio_button :flight, flight.id, { checked: i == 0 } %>
           <%= link_to "#{flight.departure_airport.code} - #{flight.arrival_airport.code}", flight_path(flight) %>
           <%=h " | " %>Date: <%= flight.date.strftime("%H:%M %d/%m/%Y") %> | Duration: <%= flight.duration %>
-        </li>
+        </div>
       <% end %>
-    </ul>
 
-    <%= f.submit "Create Booking", name: "" %>
+      <%= f.submit "Create Booking", name: "" %>
+    </div>
   <% end %>
 <% end %>
