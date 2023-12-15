@@ -1,3 +1,10 @@
+.flight-booking {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+
 .results {
   display: flex;
   flex-direction: column;
