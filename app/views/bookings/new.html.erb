@@ -1,2 +1,25 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<h1>Create Booking</h1>
+
+<h2>Flight Details</h2>
+
+<%= render @flight %>
+
+<h2>Passenger Details</h2>
+
+<%= form_with model: @flight, scope: :booking, url: bookings_path do |f| %>
+    <%= f.fields_for :passengers do |f_nest| %>
+      <h3>Passenger <%= f_nest.options[:child_index] + 1 %></h3>
+
+        <div class="field">
+          <%= f_nest.label :name, "Name:" %>
+          <%= f_nest.text_field :name %>
+        </div>
+
+        <div class="field">
+          <%= f_nest.label :email, "Email:" %>
+          <%= f_nest.text_field :email %>
+        </div>
+    <% end %>
+
+    <%= f.submit "Create #{"Booking".pluralize(@passengers)}", name: "" %>
+<% end %>
