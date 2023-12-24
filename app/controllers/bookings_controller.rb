@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
       @passengers.each do |p|
         p.save
         @flight.bookings.create(passenger: p)
+        PassengerMailer.with(passenger: p, flight: @flight).confirmation_email.deliver_now
       end
       redirect_to flight_path(@flight)
     else

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Details</title>
+</head>
+<body>
+  <header>
+    <div>
+      <div id="branding">
+        <h1>Flight Booker</h1>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div>
+      <h2>Flight Details</h2>
+      <p>Dear <%= @passenger.name %>,</p>
+      <p>Your flight details are as follows:</p>
+      <ul>
+        <li><strong>Departure Time and Date:</strong> <%= @flight.date.strftime("%H:%M %d/%m/%Y") %></li>
+        <li><strong>Flight Duration:</strong> <%= pluralize(@flight.duration, "minutes") %></li>
+        <li><strong>Departure Airport:</strong> <%= @flight.departure_airport.code %> - <%= @flight.departure_airport.name %></li>
+        <li><strong>Arrival Airport:</strong> <%= @flight.arrival_airport.code %> - <%= @flight.arrival_airport.name %></li>
+      </ul>
+      <p>Thank you for choosing Flight Booker. Have a safe and pleasant journey!</p>
+    </div>
+  </main>
+
+</body>
+</html>

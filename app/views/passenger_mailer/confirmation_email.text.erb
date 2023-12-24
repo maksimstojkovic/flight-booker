@@ -1,0 +1,10 @@
+Dear <%= @passenger.name %>,
+
+Your flight details are as follows:
+
+Departure Time and Date: <%= @flight.date.strftime("%H:%M %d/%m/%Y") %>
+Flight Duration: <%= pluralize(@flight.duration, "minutes") %>
+Departure Airport: <%= @flight.departure_airport.code %> - <%= @flight.departure_airport.name %>
+Arrival Airport: <%= @flight.arrival_airport.code %> - <%= @flight.arrival_airport.name %>
+
+Thank you for choosing Flight Booker. Have a safe and pleasant journey!
