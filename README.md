@@ -10,3 +10,4 @@ The following are used as part of this project:
 * GET route parameters
 * POST route parameters
 * Parameter validation
+* Mailers ([`letter_opener`](https://github.com/ryanb/letter_opener))
